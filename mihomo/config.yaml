@@ -1,0 +1,283 @@
+# ==========================================
+# 基础设置 (General)
+# ==========================================
+
+# 混合端口 (HTTP和SOCKS5共用)，即手动设置代理时填的端口
+mixed-port: 7890
+
+# 允许局域网连接 (手机连你电脑代理)
+allow-lan: true
+
+# 绑定地址，* 代表允许所有设备访问
+bind-address: "*"
+
+# 运行模式: rule (规则模式 - 推荐), global (全局), direct (直连)
+mode: rule
+
+# [调试关键] 日志级别
+# 平时用 info，如果出问题改成 debug 可以看到更详细的报错
+log-level: info
+
+# 开启 IPv6 (如果你的梯子节点支持IPv6，开启可提高连接成功率，否则可能拖慢速度)
+ipv6: true
+
+# 外部控制 API (Web 面板通信端口)
+external-controller: 127.0.0.1:9090
+
+# Web 面板文件夹路径 (Mihomo 会自动在这个路径找网页文件)
+external-ui: ui
+
+# 面板下载地址 (第一次启动时会自动下载面板)
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+# 数据库模式 (GeoIP/GeoSite)，保持默认即可
+geodata-mode: true
+geox-url:
+  # GeoIP (国家库) - CDN 加速
+  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  # GeoSite (域名分类库) - CDN 加速
+  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  # MMDB (通用格式库) - CDN 加速
+  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  # ASN (运营商库) - CDN 加速
+  asn: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
+
+# 进程匹配模式 (用于让规则匹配具体是哪个软件发出的请求)
+find-process-mode: strict
+client-fingerprint: chrome
+
+# 缓存设置 (重启后记得上次选的节点)
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 嗅探器 (让内核知道 HTTPS 包里访问的是什么域名，用于准确分流)
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com" # 苹果推送不嗅探，防止延迟
+
+# ==========================================
+# [关键修改] TUN 模式设置
+# ==========================================
+tun:
+  # [修改点1] 必须开启，否则无法接管系统流量
+  enable: true
+
+  # [修改点2] macOS 推荐使用 system 栈，性能比 mixed 更好，CPU占用更低
+  stack: system
+
+  # DNS 劫持：强制拦截所有发往 53 端口的 DNS 请求
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+
+  # 自动配置路由表 (让流量流向虚拟网卡)
+  auto-route: true
+
+  # 自动配置路由规则
+  auto-redirect: true
+
+  # 自动检测网卡 (防止多网卡冲突)
+  auto-detect-interface: true
+
+# ==========================================
+# [关键修改] DNS 设置
+# ==========================================
+dns:
+  enable: true
+  ipv6: true
+
+  # [修改点3] 显式指定监听端口，防止冲突
+  listen: 0.0.0.0:1053
+
+  # 模式：fake-ip (最快模式，立即返回假 IP，防止 DNS 污染)
+  enhanced-mode: fake-ip
+
+  # 假 IP 池 (一般不需要动)
+  fake-ip-range: 198.18.0.1/16
+
+  # [修改点4] 过滤列表：绝对不能放 "*" !!!
+  # 这里的域名会返回真实 IP，其他的都返回假 IP
+  fake-ip-filter:
+    # - "*"               <-- 删除了这一行，这是导致你之前 DNS 异常的元凶
+    - "+.lan" # 局域网
+    - "+.local" # 本地
+    - "+.market.xiaomi.com"
+    - "localhost"
+
+  # 默认 DNS (用于解析 DoH 域名的 IP)
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  # 核心 DNS (推荐使用加密 DNS，防止运营商偷看/劫持)
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+# ==========================================
+# 代理订阅 (保持你原来的)
+# ==========================================
+proxy-providers:
+  SSRDOG:
+    # 记得保留你自己的 URL
+    url: "https://cbe6427a9e78b5de4b6b8ed90f4a38a1.cdn-res-oss-cn-hongkong-aliyuncs-file.com/s?t=cbe6427a9e78b5de4b6b8ed90f4a38a1.jpg"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: "https://www.gstatic.com/generate_204"
+      interval: 300
+    override:
+      additional-prefix: "[SSRDOG]"
+
+proxies:
+  - name: "直连"
+    type: direct
+    udp: true
+
+# ==========================================
+# 策略组 (保持你原来的)
+# ==========================================
+proxy-groups:
+  - name: 默认
+    type: select
+    proxies:
+      [自动选择, 直连, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点]
+
+  - name: Google
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: Telegram
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: Twitter
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: 哔哩哔哩
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: 巴哈姆特
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: YouTube
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: NETFLIX
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: Spotify
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: Github
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  - name: 国内
+    type: select
+    proxies:
+      [直连, 默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择]
+
+  - name: 其他
+    type: select
+    proxies:
+      [默认, 香港, 台湾, 日本, 新加坡, 美国, 其它地区, 全部节点, 自动选择, 直连]
+
+  # --- 地区分组 ---
+  - name: 香港
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)港|hk|hongkong|hong kong"
+
+  - name: 台湾
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)台|tw|taiwan"
+
+  - name: 日本
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)日|jp|japan"
+
+  - name: 美国
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)美|us|unitedstates|united states"
+
+  - name: 新加坡
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)(新|sg|singapore)"
+
+  - name: 其它地区
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
+
+  - name: 全部节点
+    type: select
+    include-all: true
+    exclude-type: direct
+
+  - name: 自动选择
+    type: url-test
+    include-all: true
+    exclude-type: direct
+    tolerance: 10
+
+# ==========================================
+# 规则 (保持你原来的)
+# ==========================================
+rules:
+  - GEOIP,lan,直连,no-resolve
+  - GEOSITE,github,Github
+  - GEOSITE,twitter,Twitter
+  - GEOSITE,youtube,YouTube
+  - GEOSITE,google,Google
+  - GEOSITE,telegram,Telegram
+  - GEOSITE,netflix,NETFLIX
+  - GEOSITE,bilibili,哔哩哔哩
+  - GEOSITE,bahamut,巴哈姆特
+  - GEOSITE,spotify,Spotify
+  - GEOSITE,CN,国内
+  - GEOSITE,geolocation-!cn,其他
+
+  - GEOIP,google,Google
+  - GEOIP,netflix,NETFLIX
+  - GEOIP,telegram,Telegram
+  - GEOIP,twitter,Twitter
+  - GEOIP,CN,国内
+  - MATCH,其他

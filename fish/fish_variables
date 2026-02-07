@@ -1,0 +1,32 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR __fish_initialized:4300
+SETUVAR __fish_webconfig_theme_notification:set\x2dtheme\x2dv1\x2d\x231
+SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/Catppuccin\x20Frappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Latte\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Macchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Mocha\x2etheme
+SETUVAR _fisher_jomik_2F_fish_2D_gruvbox_files:\x7e/\x2econfig/fish/functions/theme_gruvbox\x2efish
+SETUVAR _fisher_plugins:rose\x2dpine/fish\x1ecatppuccin/fish\x1ejomik/fish\x2dgruvbox\x1evitallium/tokyonight\x2dfish
+SETUVAR _fisher_rose_2D_pine_2F_fish_files:\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x20Dawn\x2etheme\x1e\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x20Moon\x2etheme\x1e\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x2etheme
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR _fisher_vitallium_2F_tokyonight_2D_fish_files:\x7e/\x2econfig/fish/themes/TokyoNight\x20Day\x2etheme\x1e\x7e/\x2econfig/fish/themes/TokyoNight\x20Moon\x2etheme\x1e\x7e/\x2econfig/fish/themes/TokyoNight\x20Night\x2etheme\x1e\x7e/\x2econfig/fish/themes/TokyoNight\x20Storm\x2etheme
+SETUVAR fish_color_autosuggestion:565f89
+SETUVAR fish_color_command:7dcfff
+SETUVAR fish_color_comment:565f89
+SETUVAR fish_color_end:ff9e64
+SETUVAR fish_color_error:f7768e
+SETUVAR fish_color_escape:bb9af7
+SETUVAR fish_color_keyword:bb9af7
+SETUVAR fish_color_normal:c0caf5
+SETUVAR fish_color_operator:9ece6a
+SETUVAR fish_color_option:bb9af7
+SETUVAR fish_color_param:9d7cd8
+SETUVAR fish_color_quote:e0af68
+SETUVAR fish_color_redirection:c0caf5
+SETUVAR fish_color_search_match:\x2d\x2dbackground\x3d283457
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d283457
+SETUVAR fish_greeting:\x1d
+SETUVAR fish_pager_color_completion:c0caf5
+SETUVAR fish_pager_color_description:565f89
+SETUVAR fish_pager_color_prefix:7dcfff
+SETUVAR fish_pager_color_progress:565f89
+SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d283457
+SETUVAR fish_user_paths:/usr/local/bin\x1e/Users/yjydist/\x2elocal/bin\x1e/Users/yjydist/\x2ecargo/bin\x1e/opt/homebrew/bin\x1e/usr/bin\x1e/Applications/Ghostty\x2eapp/Contents/MacOS

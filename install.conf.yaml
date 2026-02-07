@@ -1,0 +1,42 @@
+# 各部分的默认设置
+- defaults:
+    # Link 设置
+    link:
+      create: true # 如果路径其中某一级目录不存在, 就自动创建
+      type: symlink # 使用软链接
+      relink: true
+      force: true # 强制创建链接, 即使目标已经存在目录或者文件
+      relative: false # 创建的符号链接指向的路径是使用绝对路径还是相对路径
+      
+    # Create 设置
+    create:
+      mode: 0700 # 默认的权限
+      
+    # Shell 设置
+    shell:
+      
+    # Clean 设置
+    clean:
+      force: true # 删除失效的符号链接, 哪怕这个链接没有指向 Dotfiles 目录里的文件
+      recursive: true # 递归删除
+
+
+# Clean
+- clean: ["~/.config"]
+
+
+# 链接设置
+- link:
+    $HOME/.config/fish: ./fish
+    $HOME/.config/ghostty: ./ghostty 
+    $HOME/.config/nvim: ./nvim 
+    $HOME/.config/zed/settings.json: ./zed/settings.json 
+    $HOME/.config/fastfetch: ./fastfetch
+
+
+- create:
+    - ~/downloads
+    - ~/.vim/undo-history
+
+
+

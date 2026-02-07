@@ -1,0 +1,110 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+   "unnecessary_code_fade": 0.3,
+   "current_line_highlight": "all",
+   "agent_buffer_font_size": 11.0,
+   "tabs": {
+      "file_icons": true
+   },
+   "ssh_connections": [
+      {
+         "host": "10.198.12.30",
+         "args": [],
+         "projects": []
+      }
+   ],
+   "languages": {
+      "JSON": {
+         "tab_size": 3
+      },
+      "JSONC": {
+         "tab_size": 3
+      },
+      "JavaScript": {
+         "tab_size": 4
+      },
+      "Nix": {
+         "tab_size": 3
+      }
+   },
+   "buffer_line_height": "standard",
+   "icon_theme": "Catppuccin Mocha",
+   "show_edit_predictions": false,
+   "restore_on_startup": "last_workspace",
+   "agent": {
+      "default_profile": "write",
+      "always_allow_tool_actions": true,
+      "default_model": {
+         "provider": "copilot_chat",
+         "model": "gpt-5"
+      },
+      "model_parameters": []
+   },
+   "disable_ai": false,
+   "agent_ui_font_size": 12.0,
+   "format_on_save": "on",
+   "formatter": "language_server",
+   "ui_font_weight": 600.0,
+   "ui_font_family": "JetBrains Mono",
+   "ui_font_fallbacks": [
+      "Maple Mono NF CN"
+   ],
+   "ui_font_features": {
+      "cv01": true,
+      "cv09": true,
+      "cv18": true,
+   },
+   "buffer_font_weight": 600.0,
+   "buffer_font_family": "JetBrains Mono",
+   "buffer_font_fallbacks": [
+      "Maple Mono NF CN"
+   ],
+   "buffer_font_features": {
+      "cv01": true,
+      "cv09": true,
+      "cv18": true
+   },
+   "ui_font_size": 12.0,
+   "buffer_font_size": 11.0,
+   "theme": {
+      "mode": "system",
+      "light": "One Light",
+      "dark": "Tokyo Night",
+   },
+   "autosave": {
+      "after_delay": {
+         "milliseconds": 100,
+      },
+   },
+   // "proxy": "http://127.0.0.1:7890",
+   "terminal": {
+      "shell": {
+         "program": "/opt/homebrew/bin/fish"
+      },
+      "line_height": "comfortable"
+   },
+   "always_treat_brackets_as_autoclosed": true,
+   "title_bar": {
+      "show_branch_icon": true,
+      "show_user_picture": false,
+      "show_menus": true
+   },
+   // AI Agent
+   "agent_servers": {
+      "Qwen Code": {
+         "type": "custom",
+         "command": "qwen",
+         "args": [
+            "--acp"
+         ],
+         "env": {}
+      }
+   }
+}

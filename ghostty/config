@@ -1,0 +1,53 @@
+macos-titlebar-proxy-icon = hidden
+title = " "
+theme = TokyoNight
+#theme = Builtin Dark
+#theme = Catppuccin Mocha 
+#theme = Gruvbox Dark Hard
+#theme = Kitty Default
+#theme = Rose Pine
+#theme = Apple System Colors Light
+#theme = Atom One Light
+#theme = Github Dark High Contrast
+command = /opt/homebrew/bin/fish
+shell-integration = fish
+
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-text = black
+
+right-click-action = copy-or-paste
+
+font-family = JetBrains Mono
+font-family = Maple Mono NF CN
+
+font-feature = cv01
+font-feature = cv09
+#font-feature = cv10
+#font-feature = cv15
+font-feature = cv18
+#font-feature = cv20
+
+font-style = Bold
+font-style-bold = false
+font-style-italic = false
+font-style-bold-italic = false
+
+font-thicken = true
+#font-thicken-strength = 255
+
+font-synthetic-style = false
+
+font-size = 10.5
+
+window-padding-x = 12
+window-padding-y = 1, 4
+window-width = 130
+window-height = 30
+
+adjust-underline-position = 5%
+adjust-underline-thickness = 30%
+
+adjust-cell-height = 0%
+adjust-cell-width = 0%
+adjust-box-thickness = 50%
