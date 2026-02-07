@@ -64,7 +64,7 @@
    "buffer_font_weight": 600.0,
    "buffer_font_family": "JetBrains Mono",
    "buffer_font_fallbacks": [
-      "Maple Mono NF CN"
+      "Maple Mono NF CN",
    ],
    "buffer_font_features": {
       "cv01": true,
@@ -84,11 +84,12 @@
       },
    },
    // "proxy": "http://127.0.0.1:7890",
+   // 终端设置
    "terminal": {
       "shell": {
          "program": "/opt/homebrew/bin/fish"
       },
-      "line_height": "comfortable"
+      "line_height": "standard"
    },
    "always_treat_brackets_as_autoclosed": true,
    "title_bar": {
