@@ -32,6 +32,7 @@
     $HOME/.config/nvim: ./nvim 
     $HOME/.config/zed/settings.json: ./zed/settings.json 
     $HOME/.config/fastfetch: ./fastfetch
+    $HOME/.config/mihomo: ./mihomo
 
 
 - create:
