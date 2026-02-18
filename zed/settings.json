@@ -113,6 +113,14 @@
    },
    // AI Agent
    "agent_servers": {
+      "Kimi Code": {
+         "type": "custom",
+         "command": "kimi",
+         "args": [
+            "acp"
+         ],
+         "env": {}
+      },
       "Qwen Code": {
          "type": "custom",
          "command": "qwen",
@@ -123,3 +131,9 @@
       }
    }
 }
+   
+   
+      
+   
+   
+

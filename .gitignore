@@ -1,5 +1,5 @@
-mihomo/proxies
-mihomo/ui
+mihomo/proxies/
+mihomo/ui/
 mihomo/cache.db
 mihomo/GeoIP.dat
 mihomo/GeoSite.dat
